@@ -1,0 +1,28 @@
+<div class="container">
+<h2>Players management</h2>
+
+<table id="table" class="table">
+    <thead>
+         <tr>
+        <th >NAME</th>
+        <th >AGE</th>
+        <th >CLUB</th>
+        <th >COUNTRY</th>
+        <th></th>
+         </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of players">
+          <td>{{player?.name}}</td>
+          <td>{{player?.age}}</td>
+          <td>{{player?.club}}</td>
+          <td>{{player?.country}}</td>
+          <td><app-update-player [player]="player"></app-update-player></td>
+
+      </tr>
+     
+    </tbody>
+    <!-- <app-add-player></app-add-player> -->
+  </table>
+
+</div>
