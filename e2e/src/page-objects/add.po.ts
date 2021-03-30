@@ -40,7 +40,7 @@ export class Add extends Main{
 	/*Close button */
 
 	getCloseButton(): ElementFinder {
-		return this.getAddPlayer().element(by.buttonText("Close"));
+		return this.getAddPlayer().element(by.buttonText("Cancel"));
 	}
 
 	clickCloseButton():promise.Promise<void> {
@@ -48,26 +48,28 @@ export class Add extends Main{
 	}
 	
 
-	/* Get Input Paste values from the Modal window */
-	getInputPasteValues():any {
-		return Promise.all([this.getInputName().getAttribute('value'), this.getInputAge().getAttribute('value'),
+	/* Get Input values from the Modal window */
+	getInputValues():Promise<String[]> {
+		return Promise.all([
+        this.getInputName().getAttribute('value')
+        ,this.getInputAge().getAttribute('value')
         ,this.getInputClub().getAttribute('value'),
         this.getInputCountry().getAttribute('value')])
-		.then( (values) => {
+		.then( (values) => {    
+            console.log(values);
+                    
 			return values;
 		});
 		
 	}
-
+    
 
 
 	addNewPlayer():any {
 		let newPlayer: any = this.getMockPlayer();
-
+     
 		this.getInputName().sendKeys(newPlayer.name);
-
 		this.getInputAge().sendKeys(newPlayer.age);
-
         this.getInputClub().sendKeys(newPlayer.club);
         this.getInputCountry().sendKeys(newPlayer.country);
 

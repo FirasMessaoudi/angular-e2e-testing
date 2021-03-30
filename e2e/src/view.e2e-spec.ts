@@ -19,10 +19,23 @@ describe ('View players page', ()=>{
 
    it('Should have the app add player tag', async () => {
        expect(await view.getAddPlayerTag()).toBeTruthy();
-   })
+   });
 
    it('Should have a table with headers ', async () => {
        expect (await view.getTableHeader()).toContain('NAME AGE CLUB COUNTRY');
+   });
+   it('Should have a delete button', async () => {
+      expect (await view.getDeleteButton().isPresent()).toBeTruthy('Delete button should be present'); 
+   });
+
+   it('Delete should work', async () => {
+       await view.clickDeleteButton();
+       expect(view.isDeleteModalPresent()).toBeTruthy('Modal delete should appear');
+       const rowToBeDeleted = view.getLastRowData();
+       await view.clickConfirmDeleteButton();
+       expect(view.getLastRowData()).not.toEqual(rowToBeDeleted);
+       expect(view.isDeleteModalPresent()).toBeFalsy('Delete modal should be gone');
+
    })
      
     

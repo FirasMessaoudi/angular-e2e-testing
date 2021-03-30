@@ -42,5 +42,24 @@ export class View extends Main {
 	isAddPlayerTagPresent(): promise.Promise<boolean> {
 		return this.getAddPlayerTag().isPresent();
 	}
+    getDeleteButton(): ElementFinder {
+        return this.getViewContainer().element(by.buttonText("Delete"));
+    }
+    clickDeleteButton(): promise.Promise<void> {
+		return this.getDeleteButton().click();
+	}
 
+    getDeleteModal(): ElementFinder {
+		return this.getViewContainer().element(by.id("exampleModal"));
+	}
+
+	isDeleteModalPresent() : promise.Promise<boolean> {
+		return this.getDeleteModal().isPresent();
+	}
+    getConfirmDeleteButton(): ElementFinder {
+        return this.getViewContainer().element(by.buttonText("Confirm"));
+    }
+    clickConfirmDeleteButton(): promise.Promise<void> {
+		return this.getConfirmDeleteButton().click();
+	}
 }

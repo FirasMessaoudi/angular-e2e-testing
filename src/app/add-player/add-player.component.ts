@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-add-player',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AddPlayerComponent implements OnInit {
   newPlayer={};
   showModal= false;
+  @Output() addPlayer: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('closebutton') closebutton;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +20,11 @@ export class AddPlayerComponent implements OnInit {
    this.newPlayer = {"name":'','age':'','club':'','country':''};
    console.log(this.newPlayer);
    
+  }
+  save(){
+    this.addPlayer.emit(this.newPlayer);
+    this.closebutton.nativeElement.click();
+    this.initPlayer();
   }
 
 }
